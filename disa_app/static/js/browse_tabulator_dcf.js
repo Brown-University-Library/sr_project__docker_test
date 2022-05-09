@@ -2,6 +2,9 @@
 import dcfConfig from './browse_tabulator_dcf-config.js';
 import { getDcfResources } from './browse_tabulator_dcf-resources.js';
 
+const parser = new DOMParser(),
+      strToDom = str => parser.parseFromString(str, 'text/html').body.firstElementChild;
+
 // Given a clause, generate test functions
 
 const testFunctionFactories = {
@@ -148,28 +151,37 @@ function getDcfUpdateHandler(searchState, dcfContentElem, table) {
 
     // Generate the sidebar content
 
-    // For each rule, 
-    //  (1) run the tests against the filter state
-    //  (2) get a list of resources
-    //  (3) deduplicate it
-    //  (4) convert to HTML and join
-    // (If no rules pass, then use the default rule)
-
     searchState.refreshFilterValues();
+
+    // For each rule, run the tests against the filter state
+    // (if none pass, then use the default rule)
 
     const cfRulesThatPass = rules.filter(rule => rule.filterPasses()), // (1)
           cfRules = cfRulesThatPass.length ? cfRulesThatPass : [defaultRule];
 
-    const cfHTML = cfRules.reduce((resources, rule) => resources.concat(rule.resources), []) // (2)
-        .filter(filterForUniques) // (3)
-        .map(resource => resource.cfHtml) // (4)
-        .join();
+    // From the passed rules, get the list of associated cfResources and deduplicate
 
-    dcfContentElem.innerHTML = cfHTML;
+    const cfResources = cfRules.reduce((resources, rule) => resources.concat(rule.resources), []) // (2)
+        .filter(filterForUniques);
+
+    // Get the list of IDs of the cfResources that are currently displayed in the DOM
+
+    const cfIDsAlreadyDisplayed = Array.from(dcfContentElem.children).map(x => x.id);
+    
+    // Add cfResources to DOM if they're not already displaying
+    
+    const isNotDisplayed = r => ! cfIDsAlreadyDisplayed.includes(`dcf-resource-${r.id}`);
+    cfResources.filter(r => isNotDisplayed(r)) // Filter for not-displayed
+        .map(resource => strToDom(resource.cfHtml)) // Convert to DOM Element
+        .forEach(resourceElem => dcfContentElem.appendChild(resourceElem)); // Append to DOM
+
+    // Remove displayed cfResources from DOM if they no longer apply with these rules
+
+    const cfResourcesIds = cfResources.map(r => `dcf-resource-${r.id}`);
+    console.log({ HHHH: cfResourcesIds });
+    cfIDsAlreadyDisplayed.filter(cfId => ! cfResourcesIds.includes(cfId))
+        .forEach(cfId => document.getElementById(cfId).remove());
   }
-
-  // Get a map of resources to rules
-
 }
 
 // @todo for testing only

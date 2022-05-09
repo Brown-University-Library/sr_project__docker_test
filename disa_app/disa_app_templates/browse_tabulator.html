@@ -253,20 +253,32 @@
             <template id="dcf-resource-template">
                 <div class="dcf-resource card bg-light mb-3">
                     <div class="card-header">
-                        <span class="dcf-number badge bg-primary text-light"></span>
-                        <span class="dcf-resource-title"></span>
+                        <span class="dcf-number badge bg-primary text-light" hidden></span>
+                        <button class="dcf-resource-title btn btn-link btn-block text-left" data-toggle="collapse" data-target="#abc"></button>
+                        <!-- This is used when you want the whole header to link to the details
                         <a class="dcf-resource-link card-link stretched-link" 
                             href="#" target="_BLANK"
                             style="font-weight: bold; font-size: 80%"
-                            title="">&nbsp;</a>
+                            title="">&nbsp;</a> -->
+                            <!--
+                        <a class="dcf-resource-link card-link-x stretched-link-x" 
+                            href="#" target="_BLANK"
+                            style="font-weight: bold; font-size: 80%"
+                            title="">More</a> -->
                     </div>
-                    <div class="card-body">
-                        <img class="dcf-featured-image" src="" alt="" />
-                        <span class="dcf-resource-text"></span>
+                    <div id="abc" class="dcf-collapsible-content collapse" data-parent="#dcf-content">
+                        <div class="card-body">
+                            <img class="dcf-featured-image" src="" alt="" hidden />
+                            <span class="dcf-resource-text"></span>
+                            <a class="dcf-resource-link card-link-x stretched-link-x" 
+                                href="#" target="_BLANK"
+                                style="font-weight: bold; font-size: 80%"
+                                title="Link to more context">More</a>
+                        </div>
                     </div>
                 </div>
             </template>
-            <div id="dcf-content"></div>
+            <div id="dcf-content" class="accordion"></div>
         </div>
     </div>
 

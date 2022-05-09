@@ -29,9 +29,13 @@ function getResourceDisplayHtml(resource) {
   // Populate template copy
 
   resourceCard.firstElementChild.id = `dcf-resource-${resource.id}`;
-  resourceCard.querySelector('span.dcf-number').textContent = resource.id;
-  resourceCard.querySelector('span.dcf-resource-title').textContent = resource.title;
-  resourceCard.querySelector('span.dcf-resource-text').innerHTML = resource.text;
+  resourceCard.querySelector('.dcf-number').textContent = resource.id;
+  const resourceTitleElem = resourceCard.querySelector('.dcf-resource-title');
+  const resourceCollapsibleElemId = `dcf-resource-${resource.id}-collapse`;
+  resourceTitleElem.textContent = resource.title;
+  resourceTitleElem.dataset.target = `#${resourceCollapsibleElemId}`;
+  resourceCard.querySelector('.dcf-collapsible-content').id = resourceCollapsibleElemId;
+  resourceCard.querySelector('.dcf-resource-text').innerHTML = resource.text;
   // resourceCard.querySelector('img.dcf-featured-image').src = imageUrl || '';
   linkToFullResource.href = resource.url;
   linkToFullResource.title = `Link to more information about ${resource.title}`;
