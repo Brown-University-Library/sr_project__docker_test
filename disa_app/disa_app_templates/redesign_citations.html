@@ -1,7 +1,7 @@
 {% extends "disa_app_templates/redesign_base.html" %}
 {% load staticfiles %}
 
-<!-- The sidebar-block html below is within the redesign_base.html template's `<div class="wrapper" style="margin-top: 3.5em;">` element. -->
+<!-- The sidebar-block html below is within the redesign_base.html template's `<div class="wrapper">` element. -->
 
 {% block sidebar %}
 
@@ -29,11 +29,9 @@
         <p>
           <i class="fas fa-arrow-right fa-lg" style="opacity: .55;"></i> SEARCH under <span class="sidebar-info-highlight">Open previous</span> <!--or <span class="action-highlight">All recent</span>--> if you are opening a document that you or someone else previously created.
         </p>
-        <!--<p><i class="fas fa-arrow-right fa-lg" style="opacity: .55;"></i> The documents listed under <span class="sidebar-info-highlight">Open previous</span> offer the last fifteen documents you worked on.</p>-->
         <p>
           <i class="fas fa-arrow-right fa-lg" style="opacity: .55;"></i> Toggle-off <span class="sidebar-info-highlight">Show only your entries</span> to list the documents that anyone entering information into DISA has created.
         </p>
-        <!--<p><i class="fas fa-arrow-right fa-lg" style="opacity: .55;"></i> CLICK <span class="sidebar-info-highlight">Show details</span> to see a timestamp and the username of the person who last edited each document.</p>-->
         <hr />
         <p style="font-weight: bold;">
           For more information on the use of this form
@@ -122,24 +120,11 @@
 
     <div class="card mb-6">
       <div class="card-body">
-        <div class="row">           <!--
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="current-user-only">
-            <label class="form-check-label" for="current-user-only">
-              Show only your entries
-            </label>
-          </div>
-          <div class="form-check form-switch col-6">
-            <input class="form-check-input" type="checkbox" id="show-details">
-            <label class="form-check-label" for="show-details">
-              Show details
-            </label>
-          </div> -->
+        <div class="row">
         </div>
         <div class="row">
-
           <div class="col-6">
-          <!-- Title filter field -->
+              <!-- Title filter field -->
               <div class="form-input">
                   <label for="title-filter" style="width: 5em">Title</label>
                   <input id="title-filter"></input>
@@ -157,7 +142,6 @@
               Show only your entries
             </label>
             </div>
-          <!--</div> -->
             <!-- Editor filter field -->
             <div class="form-input">
               <label for="editor-filter" style="width: 5em">Editor</label>

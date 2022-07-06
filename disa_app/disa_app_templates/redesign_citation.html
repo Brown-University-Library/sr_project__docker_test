@@ -649,23 +649,6 @@
           </div>
         </div>
       </div>
-
-      <!-- "Confirm delete" modal -->
-<!--
-      <div class="modal" tabindex="-1" id="confirm-delete">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Are you sure you want to delete?</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No - do not delete</button>
-              <button type="button" class="btn btn-primary">Yes! Please delete</button>
-            </div>
-          </div>
-        </div>
-      </div> -->
       
       <!-- Actual Record tab content -->
 
@@ -751,47 +734,10 @@
             <div id="item-form">
               <form>
                 <div class="row col-lg-12" style="padding-top:40px;padding-left:25px;">
-
-                  <!-- Record location not in current DB model
-
-                  <div class="col-md-6">
-
-                    <h5 class="text-dark" style="float:left;">
-                      Record's location in source document
-                    </h5>
-
-                    <!-/- Record page numbers -/->
-
-                    <div class="form-floating">
-                      <label for="formInputDISAItemVolume">Volume</label>
-                      <input type="number" class="form-control"
-                            id="formInputDISAItemVolume" aria-label="Volume"
-                            placeholder="Volume in source" v-model="currentItem.volume">
-                    </div>
-                    <div class="form-floating">
-                      <div class="input-group mb-3">
-                        <span class="input-group-text">Page numbers from</span>
-                        <input type="number"
-                              class="form-control" id="formInputDISASourcePageStart"
-                              aria-label="starting page number"
-                              v-model="currentItem.page_start"
-                              placeholder="starting page">
-                        <span class="input-group-text">to</span>
-                        <input type="number"
-                              class="form-control" id="formInputDISASourcePageEnd" aria-label="ending page number"
-                              placeholder="ending page" v-model="currentItem.page_end">
-                      </div>
-                    </div>
-                  </div>
-                  -->
                   
                   <!-- Record type and transcription area-->
 
                   <div class="col-md-12"> <!-- Change to col-md-6 when Record location added above -->
-                    <!--
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirm-delete">
-                      Launch demo modal
-                    </button>-->
 
                     <h5 class="text-dark">Record content</h5>
 
@@ -872,12 +818,6 @@
                               v-model="currentItem.dateParts.year"
                               v-on:change="saveItemDataToServer">
                     </div>
-
-                    <!-- AWAITING NEW DATA MODEL
-                    <div class="form-floating">
-                      <input type="text" class="form-control" id="formInputDISAEventDateInfo" aria-label="Additional date information" placeholder="Additional date info.">
-                      <label for="formInputDISAEventDateInfo">Additional date info.</label>
-                    </div> -->
 
                   </div>
 
@@ -1023,88 +963,6 @@
 
                           <h6>Name</h6>
 
-                          <!-- WAITING FOR NEW MODEL (multiple names, advanced model)
-
-                          <div class="card card-body">
-
-                            <!-/- Heading and create-new-name button -/->
-                            <div>
-                              <strong v-text="'Name' + (referent.names && referent.names.length > 1 ? 's' : '')"></strong>
-                              <button type="button" class="btn btn-link btn-sm" id="formInputDISAPersonAddName"
-                                      v-on:click="makeNewReferentName"
-                                      title="Enter new name for this person">
-                                +new
-                              </button>
-                            </div>
-
-                            <!-/- List of names (WAITING FOR NEW MODEL) -/->
-                            <ul>
-                              <li v-for="name in referent.names">
-                                <div v-on:click="currentNameId = (currentNameId === name.id) ? -1 : name.id">
-                                  <span v-if="name.first || name.last">
-                                    <span v-text="`${name.first} ${name.last}  `"></span>
-                                    <disa-id v-if="currentNameId === name.id" v-bind:forthis="name"></disa-id>
-                                  </span>
-                                  <em v-else>
-                                    New name
-                                  </em>
-                                </div>
-
-                                <!-/- Current name - details -/->
-
-                                <div v-if="currentNameId === name.id">
-
-                                  <!-/- ADVANCED NAMES - DEFER FOR NEW MODEL
-                                  <div class="custom-control custom-switch" style="">
-                                    <input type="checkbox" class="custom-control-input" id="formCustomSwitchForAdvancedNames"
-                                            v-model="referent.name">
-                                    <label style="font-size: 85%;margin-top: -10px;font-weight:bold;"
-                                            class="custom-control-label" for="formCustomSwitchForAdvancedNames">
-                                      ADVANCED NAME OPTIONS (if the first / last name designation doesn't apply)
-                                    </label>
-                                  </div> -/->
-
-                                  <div class="form-floating">
-                                    <select class="form-select" id="formInputDISAItemPersonNameType" 
-                                            aria-label="Name type"
-                                            v-model="name.name_type">
-                                      <option v-for="(nameTypeMenuLabel, nameTypeId) in MENU_OPTIONS.formInputDISAItemPersonNameType"
-                                              v-bind:value="nameTypeId"
-                                              v-text="nameTypeMenuLabel">
-                                      </option>
-                                    </select>
-                                    <label for="formInputDISAItemPersonNameType">Name type</label>
-                                  </div>
-                                  <!-/- NAME TRANSCRIPTION - DEFER TO V2? OR DROP?
-                                  <div class="form-floating">
-                                    <input type="text"
-                                            class="form-control" id="formInputDISAItemPersonNameTranscription"
-                                            aria-label="Full name transcription"
-                                            placeholder="The name as it's written in the document"
-                                            v-model="referent.transcription">
-                                    <label for="formInputDISAItemPersonNameTranscription">Full name transcription</label>
-                                  </div> -/->
-                                  <div class="form-floating">
-                                    <input type="text" class="form-control" id="formInputDISAItemPersonFirstName"
-                                            aria-label="First name" placeholder="First name"
-                                            v-model="name.first">
-                                    <label for="formInputDISAItemPersonFirstName">First name</label>
-                                  </div>
-                                  <div class="form-floating">
-                                    <input type="text" class="form-control" id="formInputDISAItemPersonLastName"
-                                            aria-label="Last name" placeholder="Last name"
-                                            v-model="name.last">
-                                    <label for="formInputDISAItemPersonLastName">Last name</label>
-                                  </div>
-                                </div>
-                              </li>
-                            </ul> 
-                          </div>-->
-
-
-                            <!-- START - SINGLE, SIMPLE NAME INTERFACE
-                                (will be replaced by above with new model) -->
-
                           <div class="row">
                             <div class="col-4">
                               <div class="form-floating">
@@ -1162,38 +1020,13 @@
                               <!-- Age -->
 
                               <div class="form-group">
-                                <div class="form-floating"> <!--
-                                  <input v-model="referent.age" id="formInputDISAPersonAge"></input>
-                                  <label for="formInputDISAPersonAge">Age</label> -->
-
-                                  <!-- BELOW IS FOR NEW MODEL WITH AGE AS NUMBER OR TEXT -->
-                                  <!--
-                                  <input vv-if="TEST FOR age_number"
-                                          type="number" min="0" max="110">
-                                  <select class="form-select" id="formInputDISAPersonAge_number" 
-                                          aria-label="New person's age (number)" 
-                                          placeholder="New person's age (number)">
-                                    <option selected>&nbsp;</option>
-                                    <option value="-1">Unspecified</option>
-                                    <option value="1">1 year</option>
-                                    <option value="2">2 years</option>
-                                    <option value="3">3 years</option>
-                                  </select>
-                                  <label for="formInputDISAPersonAge_number">Age</label> -->
+                                <div class="form-floating">
                                   <input type="text" class="form-control" id="formInputDISAPersonAge_text" 
                                         aria-label="New person's age (text)" 
                                         placeholder="Age"
                                         v-model="referent.age"
                                         v-on:blur="saveReferentDataToServer">
                                   <label for="formInputDISAPersonAge_text">Age</label>
-                                  <!-- WAITING FOR NEW MODEL
-                                  <div class="form-check" style="margin-top:-6px;">
-                                    <input class="form-check-input" style="margin-left:.125em;" type="checkbox" id="formInputSpecifiedByNumber" value="option1">
-                                    <label class="form-check-label" style="font-size: 85%;font-weight:bold;margin-left:.5em;margin-top:-10px;" 
-                                          for="formInputSpecifiedByNumber">
-                                      AGE SPECIFIED BY A NUMBER
-                                    </label>
-                                  </div>-->
                                 </div>
                               </div>
 
@@ -1209,25 +1042,6 @@
                                   </div>
                               </div>
 
-                              <!--
-                              <div class="row mb-4">
-                                  <label for="formInputDISAPersonStatus" class="col-sm-3 col-form-label" style="text-align: right;">Status</label>
-                                  <div class="col-sm-9">
-                                  <disa-tags v-model:value="referent.status"
-                                             v-bind:suggestions="MENU_OPTIONS.formInputDISAPersonStatus"
-                                             v-on:blur="saveReferentDataToServer"
-                                             id="formInputDISAPersonStatus"></disa-tags>
-                                  </div>
-                              </div>
-                            -->
-
-                              <!-- AWAITING NEW MODEL
-
-                              <div class="form-floating">
-                                <input type="text" class="form-control" id="formInputDISAStatusInfo" aria-label="Additional status information" placeholder="Additional status info.">
-                                <label for="formInputDISAStatusInfo">Additional status info.</label>
-                              </div> -->
-
                               <!-- Vocation -->
 
                               <div class="form-group">
@@ -1240,34 +1054,11 @@
                                   </div>
                               </div>
 
-                              <!--
-                              <div class="row mb-4">
-                                <label for="formInputDISAPersonVocation" class="col-sm-3 col-form-label" style="text-align: right;">Vocation</label>
-                                <div class="col-sm-9">
-                                  <disa-tags v-model="currentReferent.vocations"
-                                             v-bind:suggestions="MENU_OPTIONS.formInputDISAPersonVocation"
-                                             v-on:blur="saveReferentDataToServer"
-                                             id="formInputDISAPersonVocation"></disa-tags>
-                                </div>
-                              </div>
-                            -->
-
-                              <!-- VOCATION AS DROPDOWN ...
-                              <div class="form-floating">
-                                <select class="form-select" id="formInputDISAPersonVocation" aria-label="Vocation" placeholder="Vocation">
-                                  <option v-for="(vocationOption, vocationOptionId) in MENU_OPTIONS.formInputDISAPersonVocation"
-                                          v-bind:value="vocationOptionId"
-                                          v-text="vocationOption">
-                                  </option>
-                                </select>
-                                <label for="formInputDISAPersonVocation">Vocation</label>
-                              </div> -->
                             </div>
                             <div class="col-md-6">
 
                               <!-- Race -->
 
-                              <!--<div class="row mb-4">-->
                               <div class="form-group">
                                 <div class="form-floating">
                                   <disa-tags class="form-control" v-model="currentReferent.races"
@@ -1278,47 +1069,7 @@
                                   </div>
                               </div>
 
-                              <!--<div class="form-group">
-                                <div class="form-floating">
-                                  <input type="text" class="form-control" id="formInputDISAPersonAge_text" 
-                                        aria-label="New person's age (text)" 
-                                        placeholder="Age"
-                                        v-model="referent.age"
-                                        v-on:blur="saveReferentDataToServer">
-                                  <label for="formInputDISAPersonAge_text">Age</label>
-                                </div>
-                              </div>-->
-
-                              <!-- NEW MODEL: only one race as dropdown
-                              <div class="form-floating">
-                                <select class="form-select" id="formInputDISAPersonRace" 
-                                        aria-label="This person's race designation"
-                                        v-model="currentReferent.race">
-                                    <option v-for="(raceOption, raceOptionId) in MENU_OPTIONS.formInputDISAPersonRace"
-                                            v-bind:value="raceOptionId"
-                                            v-text="raceOption"></option>
-                                </select>
-                                <label for="formInputDISAPersonRace">Race</label>
-                              </div>  -->
-
-                              <!-- NEW MODEL: Transcription of race text
-                              <div class="form-floating">
-                                <input type="text" class="form-control" id="formInputDISAPersonRaceTerms" 
-                                      aria-label="Exact racial terms used" placeholder="Exact racial terms used">
-                                <label for="formInputDISAPersonRaceTerms">Exact racial terms used</label>
-                              </div>  -->
-
                               <!-- Tribe -->
-
-                              <!--<div class="row mb-4">
-                                <label for="formInputDISAPersonTribe" class="col-sm-4 col-form-label" style="text-align: right;">Tribal Nation</label>
-                                <div class="col-sm-8">
-                                <disa-tags v-model="currentReferent.tribes"
-                                           v-bind:suggestions="MENU_OPTIONS.formInputDISAPersonTribe"
-                                           v-on:blur="saveReferentDataToServer"
-                                           id="formInputDISAPersonTribe"></disa-tags>
-                                </div>
-                              </div>-->
 
                               <div class="form-group">
                                 <div class="form-floating">
@@ -1329,14 +1080,6 @@
                                   <label for="formInputDISAPersonTribe" aria-label="Tribal nation">Tribal Nation</label>
                                   </div>
                               </div>
-
-                              <!-- NEW MODEL: Transcribed geographical terms  
-                              <div class="form-floating">
-                                <input type="text" class="form-control" id="formInputDISAPersonTribeTerms" 
-                                      aria-label="Exact identity/geographical terms used" 
-                                      placeholder="Exact identity/geographical terms used">
-                                <label for="formInputDISAPersonTribeTerms">Exact identity/geographical terms used</label>
-                              </div> -->
 
                               <!-- Geographical origins -->
 
@@ -1349,17 +1092,6 @@
                                   <label for="formInputDISAPersonGeoOrigins">Geographic origins</label>
                                   </div>
                               </div>
-
-                              <!--
-                              <div class="row mb-4">
-                                <label for="formInputDISAPersonGeoOrigins" class="col-sm-4 col-form-label" style="text-align: right;">Geographic origins</label>
-                                <div class="col-sm-8">
-                                <disa-tags v-model="currentReferent.origins"
-                                           v-bind:suggestions="MENU_OPTIONS.formInputDISAPersonGeoOrigins"
-                                           v-on:blur="saveReferentDataToServer"
-                                           id="formInputDISAPersonGeoOrigins"></disa-tags>
-                              </div>
-                            -->
 
                             </div>
                           </div>
@@ -1537,24 +1269,7 @@
                 </div>
 
                 <!-- Record notes -->
-                <!-- 
-                <hr />
-                <h5>Notes</h5> 
-                -->
                 <div class="col-lg-12" style="padding-top:20px;padding-left:40px;padding-right:40px;padding-bottom:40px;">
-
-                  <!-- RESEARCHER NOTES ARE FOR NEW MODEL
-                  <div class="form-floating">
-                    <textarea class="form-control" placeholder="Enter notes here..." id="formInputDISAPeopleResearcherNotes" style="height: 128px"></textarea>
-                    <label for="formInputDISAPeopleResearcherNotes">Researcher notes</label>
-                    <a href="#" style="font-size:80%;font-weight:bold;clear:left;">Report problems or ask for help</a> 
-                  </div>-->
-
-                  <!-- IS THIS BUTTON NECESSARY? 
-                  <button type="button" class="btn btn-secondary btn-md" style="font-weight: bold;margin-top: 20px;">
-                    ALL CHANGES SAVED
-                  </button> 
-                  -->
                   <a type="button" class="btn btn-primary btn-md" 
                      v-on:click="saveItemDataToServer"
                      href="../../redesign_citations/">
