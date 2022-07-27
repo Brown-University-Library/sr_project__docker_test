@@ -7,16 +7,13 @@ services:
     volumes:
       - ../DBs:/sr_project_stuff/DBs
       - ../logs:/sr_project_stuff/logs
-
       - .:/sr_project_stuff/code
-
     ports:
       - "8000:8000"
 
     environment:
       - FOO_KEY=bar_val
-      # - DISA_DJ__SECRET_KEY=dummy_secret_key
-
+      - DISA_DJ__ENV_SETTINGS_PATH=config/settings_localdev_env.sh
 
     env_file: ./config/settings_localdev_env.sh
 
