@@ -5,15 +5,22 @@ services:
     build: .
     container_name: django-web-container
     volumes:
-      # - ../db:/db
-      # - ../logs:/logs
-      - .:/code
+      - ../DBs:/sr_project_stuff/DBs
+      - ../logs:/sr_project_stuff/logs
+
+      - .:/sr_project_stuff/code
+
     ports:
       - "8000:8000"
 
     environment:
       - FOO_KEY=bar_val
+      # - DISA_DJ__SECRET_KEY=dummy_secret_key
+
+
+    env_file: ./config/settings_localdev_env.sh
+
     command: python manage.py runserver 127.0.0.1:8000
 
-    stdin_open: true    # docker run -i
-    tty: true           # docker run -t
+    # stdin_open: true    # docker run -i
+    # tty: true           # docker run -t
