@@ -34,7 +34,7 @@ export DISA_DJ__DATABASES_JSON='
       "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "HOST": "",
-        "NAME": "../DBs/dj_disa.db",
+        "NAME": "../DBs/dj_disa.sqlite",
         "PASSWORD": "",
         "PORT": "",
         "USER": ""
@@ -118,7 +118,7 @@ export DISA_DJ__BROWSE_USERPASS_JSON='[
 ## db
 ####################
 
-export DISA_DJ__DATABASE_URL="sqlite:///../DBs/DISA.db"
+export DISA_DJ__DATABASE_URL="sqlite:///../DBs/DISA.sqlite"
 
 ####################
 ## TEMP GROUPS
