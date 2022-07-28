@@ -52,7 +52,7 @@ export DISA_DJ__SERVER_EMAIL="donotreply_stolen-relations-project@domain.edu"
 export DISA_DJ__LOG_PATH="../logs/stolen_relations.log"
 export DISA_DJ__LOG_LEVEL="DEBUG"
 
-export DISA_DJ__CSRF_TRUSTED_ORIGINS_JSON='["localhost", "127.0.0.1"]'
+export DISA_DJ__CSRF_TRUSTED_ORIGINS_JSON='["localhost", "127.0.0.1", "0.0.0.0"]'
 
 ## https://docs.djangoproject.com/en/1.11/topics/cache/
 ## - TIMEOUT is in seconds (0 means don't cache); CULL_FREQUENCY defaults to one-third
