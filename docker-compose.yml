@@ -17,7 +17,7 @@ services:
 
     env_file: ./config/settings_localdev_env.sh
 
-    command: python manage.py runserver 127.0.0.1:8000
+    command: python manage.py runserver 0.0.0.0:8000
 
     # stdin_open: true    # docker run -i
     # tty: true           # docker run -t
