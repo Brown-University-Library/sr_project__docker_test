@@ -7,6 +7,9 @@ FROM python:3.9
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
+## add cron
+RUN apt-get update && apt-get -y install cron
+
 ## who doesn't love a "stuff" directory!  :)
 WORKDIR /sr_project_stuff/code
 RUN mkdir /sr_project_stuff/logs
