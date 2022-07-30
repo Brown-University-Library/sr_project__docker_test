@@ -17,7 +17,9 @@ services:
 
     env_file: ./config/settings_localdev_env.sh
 
-    command: python manage.py runserver 0.0.0.0:8000
+    # command: python manage.py runserver 0.0.0.0:8000
+
+    command: /bin/bash -c "python disa_app/lib/generate_browse_data_in_background.py && python manage.py runserver 0.0.0.0:8000"
 
     # stdin_open: true    # docker run -i
     # tty: true           # docker run -t
