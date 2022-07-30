@@ -15,6 +15,6 @@ WORKDIR /sr_project_stuff/code
 RUN mkdir /sr_project_stuff/logs
 RUN mkdir /sr_project_stuff/DBs
 
-## set up the python evn
+## set up the python environment
 COPY ./config/requirements.txt /sr_project_stuff/code/
 RUN pip install -r ./requirements.txt  
