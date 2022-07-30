@@ -18,14 +18,6 @@ services:
 
     env_file: ./config/settings_localdev_env.sh
 
-    ## works, but obviously we don't want to always overwrite the db
-    # command: /bin/bash -c "
-    #   cp ../sr_sqlite_dbs/DISA.db ../DBs/DISA.sqlite
-    #   && cp ../sr_sqlite_dbs/dj_disa.db ../DBs/dj_disa.sqlite
-    #   && python disa_app/lib/generate_browse_data_in_background.py 
-    #   && python manage.py runserver 0.0.0.0:8000
-    #   "
-
     command: /bin/bash -c "
       if test -f ../DBs/DISA.sqlite; then echo 'DISA.sqlite-file-exists-not-copying'; else cp ../sr_sqlite_dbs/DISA.db ../DBs/DISA.sqlite; fi
       && if test -f ../DBs/dj_disa.sqlite; then echo 'dj_disa.sqlite-file-exists-not-copying'; else cp ../sr_sqlite_dbs/dj_disa.db ../DBs/dj_disa.sqlite; fi
